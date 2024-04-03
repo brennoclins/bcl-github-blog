@@ -73,8 +73,9 @@
   flex-col
   md:flex-row
   gap-2
-  md:gap-10
+  md:gap-4
 
+  text-sm
   text-gray-500
   font-bold
 }
