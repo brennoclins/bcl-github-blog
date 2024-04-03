@@ -1,0 +1,69 @@
+.post {
+  @apply
+  flex
+  flex-col
+
+  rounded-lg
+  overflow-hidden
+  bg-[#112131]
+}
+
+.postHeader {
+  @apply
+  mb-2
+  py-8
+  px-4
+  bg-[#0B1B2B]
+  rounded-lg
+
+  flex
+  flex-col
+  gap-2
+
+}
+
+.postHeaderButtons {
+  @apply
+  flex
+  justify-between
+}
+
+.postHeaderButtons a {
+  @apply
+  flex
+  items-start
+  gap-2
+  text-sky-600
+  hover:font-bold
+}
+
+.postHeaderTitle {
+  @apply
+  text-3xl
+  text-white
+  font-bold
+}
+
+.postHeaderTags {
+  @apply
+  flex
+  mt-4
+  gap-8
+
+  text-gray-400
+}
+
+.postHeaderTags span {
+  @apply
+  flex
+  items-center
+  gap-2
+  
+  hover:text-gray-300
+}
+
+.postContent {
+  @apply
+  p-4
+  text-gray-300
+}

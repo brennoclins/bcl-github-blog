@@ -1,0 +1,9 @@
+.home {
+  @apply
+  overflow-hidden
+  bg-[#112131]
+  rounded-lg
+
+  flex
+  flex-col
+}

@@ -1,0 +1,19 @@
+.layout {
+  @apply
+  flex
+  flex-col
+  justify-center
+  items-center
+}
+
+.layoutContainer {
+  @apply
+  md:max-w-5xl
+      
+  flex
+  flex-col
+  justify-center
+  items-center
+
+  -translate-y-1/4
+}

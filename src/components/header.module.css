@@ -1,0 +1,22 @@
+.headerContainer {
+  @apply
+  w-full
+  min-h-96
+  bg-sky-900/15
+  
+  flex
+  flex-col
+  md:flex-row
+    
+  justify-between
+  items-center
+  gap-4
+}
+
+
+
+
+.logo {
+  @apply
+  w-1/6
+}

@@ -1,0 +1,82 @@
+.searchForm {
+  @apply
+  p-4
+  text-gray-500
+}
+
+.searchForm form {
+  @apply
+  mb-4
+  flex
+  flex-col
+  gap-2
+
+}
+
+.searchFormTitle {
+  @apply
+  flex
+  justify-between
+}
+
+.searchFormTitle h2 {
+  @apply
+  text-white
+}
+
+.searchFormInput {
+  @apply
+  p-2
+  rounded-md
+  border-l-8
+  border-b-4
+  border-transparent
+
+  bg-gray-900/50
+  text-white
+  text-lg
+  placeholder:text-gray-600
+  
+  outline-none
+  duration-500
+  
+  focus:pl-4
+
+  /* focus:bg-transparent */
+  focus:border-b-sky-900
+}
+
+.postCardConainer {
+  @apply
+  grid
+  md:grid-cols-2
+  gap-8
+  py-2
+}
+
+.postCard {
+  @apply
+  p-4
+  bg-gray-800
+  text-gray-400
+  rounded-lg
+
+  border
+  border-transparent
+  hover:border-gray-500
+}
+
+.postCardHeader {
+  @apply
+  flex
+  justify-between
+  mb-2
+}
+
+.postCardTitle {
+  @apply
+  text-2xl
+  text-gray-100
+  font-bold
+  w-2/3
+}
