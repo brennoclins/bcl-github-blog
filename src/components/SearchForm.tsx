@@ -3,13 +3,22 @@ import { useGithub } from "../hooks/useGithub";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { FormEvent, useEffect, useState } from "react";
+import Markdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 type Issues = {
-  body: string;
-  title: string;
-  updated_at: Date;
-  created_at: Date;
-  number: number;
+  number: number
+  title: string
+  body: string
+  html_url: string
+  updated_at: Date
+
+  comments: number
+  user: {
+    login: string
+    avatar_url: string
+    html_url: string
+  }
 };
 
 interface Post extends Array<Issues> {}
@@ -30,7 +39,7 @@ export function SearchForm() {
       post.title.includes(searchText)
     );
     if (postsFilted.length === 0) {
-      alert(`Termo não encontrado: ${searchText}`)
+      alert(`Termo não encontrado: ${searchText}`);
     } else {
       setPosts(postsFilted);
     }
@@ -82,16 +91,23 @@ export function SearchForm() {
 
           return (
             <div key={post.number} className={styles.postCard}>
-              <div className={styles.postCardHeader}>
+              <div>
+              <header className={styles.postCardHeader}>
                 <h4 className={styles.postCardTitle}>{post.title}</h4>
                 <span>
                   <time title={updatedAtDateFormatted}>
                     {updatedAtDateRelativeToNow}
                   </time>
                 </span>
+              </header>
+              
+              <Markdown className={styles.postCardText}>{post.body}</Markdown>
               </div>
 
-              <p className={styles.postCardText}>{post.body}</p>
+              <footer>
+                <Link className={styles.postCardLink} to={`/post/${post.number}`}>Click e leia mais...</Link>
+              </footer>
+              
             </div>
           );
         })}

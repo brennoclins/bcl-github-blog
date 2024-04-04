@@ -20,11 +20,24 @@ type User = {
 };
 
 type Issues = {
-  body: string
-  title: string
-  updated_at: Date
-  created_at: Date
+  // body: string
+  // title: string
+  // updated_at: Date
+  // created_at: Date
+  // number: number
+
   number: number
+  title: string
+  body: string
+  html_url: string
+  updated_at: Date
+
+  comments: number
+  user: {
+    login: string
+    avatar_url: string
+    html_url: string
+  }
 };
 
 
