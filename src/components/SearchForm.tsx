@@ -1,59 +1,100 @@
 import styles from "./search-form.module.css";
+import { useGithub } from "../hooks/useGithub";
+import { format, formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
+import { FormEvent, useEffect, useState } from "react";
+
+type Issues = {
+  body: string;
+  title: string;
+  updated_at: Date;
+  created_at: Date;
+  number: number;
+};
+
+interface Post extends Array<Issues> {}
 
 export function SearchForm() {
+  const { issues } = useGithub();
+  const [searchText, setSearchText] = useState<string>("");
+  const [posts, setPosts] = useState<Post>(issues);
+
+  // function handleFilterPosts(event:ChangeEvent<HTMLTextAreaElement>) {
+  //   setSearchText(event.target.value);
+  // }
+
+  function handleSearchPost(event: FormEvent) {
+    event.preventDefault();
+
+    const postsFilted = issues.filter((post) =>
+      post.title.includes(searchText)
+    );
+    if (postsFilted.length === 0) {
+      alert(`Termo não encontrado: ${searchText}`)
+    } else {
+      setPosts(postsFilted);
+    }
+
+    // console.log({
+    //   'Issues': issues,
+    //   'posts': posts,
+    //   'postsFilter': postsFilted
+
+    // });
+  }
+
+  useEffect(() => {
+    if (posts.length === 0) setPosts(issues);
+  }, [issues, posts]);
+
   return (
     <main className={styles.searchForm}>
-      <form>
+      <form onSubmit={handleSearchPost}>
         <div className={styles.searchFormTitle}>
           <h2>Publicações</h2>
-          <span>6 publicações</span>
+          <span>
+            {`${posts.length} ${
+              posts.length === 1 ? "Publicação" : "Publicações"
+            }`}
+          </span>
         </div>
 
-        <input className={styles.searchFormInput} type="text" placeholder="Buscar conteúdo" />
+        <input
+          className={styles.searchFormInput}
+          type="text"
+          placeholder="Buscar conteúdo"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
       </form>
 
       <section className={styles.postCardConainer}>
-        <div className={styles.postCard}>
-          <div className={styles.postCardHeader}>
-            <h4 className={styles.postCardTitle}>JavaScript data types and data structures</h4>
-            <span>Há 1 dia</span>
-          </div>
+        {posts.map((post) => {
+          const updatedAtDateFormatted = format(
+            post.updated_at,
+            "d 'de' LLLL 'ás' HH:mm'h'",
+            { locale: ptBR }
+          );
+          const updatedAtDateRelativeToNow = formatDistanceToNow(
+            post.updated_at,
+            { locale: ptBR, addSuffix: true }
+          );
 
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit
-            accusamus necessitatibus vero molestiae est, voluptatibus sint
-            obcaecati recusandae, veritatis, amet dolor? Nobis atque deserunt
-            cumque quia asperiores qui nesciunt labore.
-          </p>
-        </div>
+          return (
+            <div key={post.number} className={styles.postCard}>
+              <div className={styles.postCardHeader}>
+                <h4 className={styles.postCardTitle}>{post.title}</h4>
+                <span>
+                  <time title={updatedAtDateFormatted}>
+                    {updatedAtDateRelativeToNow}
+                  </time>
+                </span>
+              </div>
 
-        <div className={styles.postCard}>
-          <div className={styles.postCardHeader}>
-            <h4 className={styles.postCardTitle}>JavaScript data types and data structures</h4>
-            <span>Há 1 dia</span>
-          </div>
-
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit
-            accusamus necessitatibus vero molestiae est, voluptatibus sint
-            obcaecati recusandae, veritatis, amet dolor? Nobis atque deserunt
-            cumque quia asperiores qui nesciunt labore.
-          </p>
-        </div>
-
-        <div className={styles.postCard}>
-          <div className={styles.postCardHeader}>
-            <h4 className={styles.postCardTitle}>JavaScript data types and data structures</h4>
-            <span>Há 1 dia</span>
-          </div>
-
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit
-            accusamus necessitatibus vero molestiae est, voluptatibus sint
-            obcaecati recusandae, veritatis, amet dolor? Nobis atque deserunt
-            cumque quia asperiores qui nesciunt labore.
-          </p>
-        </div>
+              <p className={styles.postCardText}>{post.body}</p>
+            </div>
+          );
+        })}
       </section>
     </main>
   );

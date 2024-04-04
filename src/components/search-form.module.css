@@ -78,5 +78,14 @@
   text-2xl
   text-gray-100
   font-bold
+  
   w-2/3
+  md:w-3/5
+}
+
+.postCardText {
+  @apply
+  my-4
+  overflow-hidden
+  line-clamp-4
 }

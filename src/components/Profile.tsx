@@ -1,57 +1,10 @@
 import { ArrowSquareOut, Buildings, GithubLogo, Users } from "phosphor-react";
 import styles from "./profile.module.css";
-import { useEffect, useState } from "react";
-import { api } from "../lib/axios";
-
-type User = {
-  id: number;
-  login: string;
-  name: string;
-  bio: string | null;
-  company: string | null;
-  avatar_url: string;
-  email: string | null;
-  followers: number;
-  following: number;
-  html_url: string;
-};
+import { useGithub } from "../hooks/useGithub";
 
 export function Profile() {
-  const [user, setUser] = useState<User | null>(null);
-
-  async function getUser(username: string) {
-    const response = await api.get<User>(`users/${username}`);
-    const {
-      id,
-      login,
-      name,
-      bio,
-      company,
-      avatar_url,
-      email,
-      followers,
-      following,
-      html_url,
-    } = response.data;
-
-    setUser({
-      id,
-      login,
-      name,
-      bio,
-      company,
-      avatar_url,
-      email,
-      followers,
-      following,
-      html_url,
-    });
-  }
-
-  useEffect(() => {
-    getUser("zenorocha");
-  }, []);
-
+  const { user } = useGithub()
+ 
   return (
     <section className={styles.profile}>
       <div className={styles.profileAvatar}>
