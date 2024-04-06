@@ -4,9 +4,6 @@
 
 ![screen2](./public/noproject/mobile_by_Brenno.gif)
 
-[![Watch the video](./public/noproject/011.png)](./public/noproject/v01.webm)
-
-
 ## Aplicativo desenvolvido para criar um blog através de ISSUES no GITHUB.
 
 Objetivo desse projeto: praticar a utilização de clientes HTTP para consumir dados de uma API
