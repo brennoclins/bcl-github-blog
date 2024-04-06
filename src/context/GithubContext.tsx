@@ -2,8 +2,8 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "../lib/axios";
 
 //  -== SETTING_CONFIG ==-  ||
-const GITHUB_USER = "PKief"
-const GITHUB_REPO = "vscode-material-icon-theme"
+const GITHUB_USER = "rocketseat-education"
+const GITHUB_REPO = "reactjs-github-blog-challenge"
 // --------------------------\\
 
 type User = {

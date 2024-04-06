@@ -1,27 +1,36 @@
 .profile {
   @apply
-  bg-[#0B1B2B]
-  
-  p-10
-  rounded-lg
+  m-4
   
   flex
   flex-col
+  gap-4
+  
+  overflow-hidden
+  rounded-lg
+  shadow-blue
+  
+  md:shadow
   md:flex-row
-  justify-center
-  items-center
-  gap-8
+  md:items-start
+  md:bg-base-profile
+  md:p-10
+
+  md:-translate-y-1/3
 }
 
 .profileAvatar {
   @apply
-  w-2/3
-  xl:w-1/3
+  flex
+  items-center
+  justify-center
+  
   overflow-hidden
   rounded-lg
-  shadow-md
-  shadow-sky-700
-
+  
+  md:ml-4
+  md:w-1/4
+  
   transition-all
 }
 
@@ -33,11 +42,13 @@
 
 .profileContent {
   @apply
+    flex-1
     flex
     flex-col
     gap-4
+  text-base-text
 
-  text-gray-300
+  mx-4
 }
 
 .profileTitle {
@@ -45,13 +56,12 @@
   flex
   justify-between
   items-start
-  
   font-bold
 }
 
 .profileTitle h1 {
   @apply
-  text-white
+  text-base-title
   text-3xl
 }
 
@@ -60,11 +70,11 @@
   flex
   gap-2
   
-  text-sky-700
-  border-sky-500
+  text-blue
+  border-blue
   text-sm
   hover:border-b
-  hover:text-sky-500
+  hover:brightness-105
 }
 
 .profileTags {
@@ -76,8 +86,13 @@
   md:gap-4
 
   text-sm
-  text-gray-500
+  text-base-text
   font-bold
+}
+
+.profileTags svg {
+  @apply
+  text-base-label
 }
 
 .profileTags span {
@@ -86,5 +101,4 @@
   justify-between
   items-center
   gap-2
-  hover:text-white
-}
+} 

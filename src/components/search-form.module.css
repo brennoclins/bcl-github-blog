@@ -1,7 +1,19 @@
 .searchForm {
   @apply
+  w-full
+
+  flex
+  flex-col
+  justify-center
+  items-center 
+}
+
+.searchFormContainer {
+  @apply
+  w-full
   p-4
-  text-gray-500
+
+ overflow-hidden
 }
 
 .searchForm form {
@@ -13,15 +25,16 @@
 
 }
 
-.searchFormTitle {
+.searchFormHeader {
   @apply
   flex
   justify-between
+  text-base-label
 }
 
-.searchFormTitle h2 {
+.searchFormTitle {
   @apply
-  text-white
+  text-base-title
 }
 
 .searchFormInput {
@@ -32,40 +45,46 @@
   border-b-4
   border-transparent
 
-  bg-gray-900/50
-  text-white
+  bg-base-input
+  text-base-text
   text-lg
-  placeholder:text-gray-600
+  placeholder:text-base-label
   
   outline-none
   duration-500
   
   focus:pl-4
 
-  /* focus:bg-transparent */
-  focus:border-b-sky-900
-}
+  focus:border-b-blue
+} 
 
 .postCardConainer {
   @apply
+  m-2
   grid
+  grid-cols-1
+  gap-2
+  
+  md:gap-8
   md:grid-cols-2
-  gap-8
-  py-2
+
+  /* overflow-hidden */
 }
+
 
 .postCard {
   @apply
+  h-[22rem]
   relative
 
-  p-4
-  bg-gray-800
-  text-gray-400
+  p-2
+  bg-base-post
+  text-base-text
   rounded-lg
 
   border
   border-transparent
-  hover:border-gray-500
+  hover:border-base-border
 }
 
 .postCardHeader {
@@ -78,7 +97,7 @@
 .postCardTitle {
   @apply
   text-2xl
-  text-gray-100
+  text-base-title
   font-bold
   
   w-2/3
@@ -105,13 +124,13 @@
   font-bold
   text-2xl
   text-transparent
-  bg-sky-600/5
-  hover:text-white
-  hover:bg-sky-600
+  
+  hover:text-base-subtitle
+  hover:bg-blue
 
   duration-700
 
   w-full
   h-full
 }
-
+ 

@@ -1,19 +1,25 @@
 .layout {
   @apply
+  relative
+  
   flex
   flex-col
   justify-center
   items-center
+  /* overflow-hidden */
 }
 
 .layoutContainer {
   @apply
-  md:max-w-5xl
-      
+  w-full
+
   flex
   flex-col
   justify-center
   items-center
 
-  -translate-y-28
+  md:max-w-3xl
+  xl:max-w-5xl
+
+  /* -translate-y-28 */
 }

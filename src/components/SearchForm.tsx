@@ -7,18 +7,18 @@ import Markdown from "react-markdown";
 import { Link } from "react-router-dom";
 
 type Issues = {
-  number: number
-  title: string
-  body: string
-  html_url: string
-  updated_at: Date
+  number: number;
+  title: string;
+  body: string;
+  html_url: string;
+  updated_at: Date;
 
-  comments: number
+  comments: number;
   user: {
-    login: string
-    avatar_url: string
-    html_url: string
-  }
+    login: string;
+    avatar_url: string;
+    html_url: string;
+  };
 };
 
 interface Post extends Array<Issues> {}
@@ -57,25 +57,27 @@ export function SearchForm() {
   }, [issues, posts]);
 
   return (
-    <main className={styles.searchForm}>
-      <form onSubmit={handleSearchPost}>
-        <div className={styles.searchFormTitle}>
-          <h2>Publicações</h2>
-          <span>
-            {`${posts.length} ${
-              posts.length === 1 ? "Publicação" : "Publicações"
-            }`}
-          </span>
-        </div>
+    <section className={styles.searchForm}>
+      <section className={styles.searchFormContainer}>
+        <form onSubmit={handleSearchPost}>
+          <div className={styles.searchFormHeader}>
+            <h2 className={styles.searchFormTitle}>Publicações</h2>
+            <span className={styles.searchFormSubTitle}>
+              {`${posts.length} ${
+                posts.length === 1 ? "Publicação" : "Publicações"
+              }`}
+            </span>
+          </div>
 
-        <input
-          className={styles.searchFormInput}
-          type="text"
-          placeholder="Buscar conteúdo"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </form>
+          <input
+            className={styles.searchFormInput}
+            type="text"
+            placeholder="Buscar conteúdo"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </form>
+      </section>
 
       <section className={styles.postCardConainer}>
         {posts.map((post) => {
@@ -92,26 +94,30 @@ export function SearchForm() {
           return (
             <div key={post.number} className={styles.postCard}>
               <div>
-              <header className={styles.postCardHeader}>
-                <h4 className={styles.postCardTitle}>{post.title}</h4>
-                <span>
-                  <time title={updatedAtDateFormatted}>
-                    {updatedAtDateRelativeToNow}
-                  </time>
-                </span>
-              </header>
-              
-              <Markdown className={styles.postCardText}>{post.body}</Markdown>
+                <header className={styles.postCardHeader}>
+                  <h4 className={styles.postCardTitle}>{post.title}</h4>
+                  <span>
+                    <time title={updatedAtDateFormatted}>
+                      {updatedAtDateRelativeToNow}
+                    </time>
+                  </span>
+                </header>
+
+                <Markdown className={styles.postCardText}>{post.body}</Markdown>
               </div>
 
               <footer>
-                <Link className={styles.postCardLink} to={`/post/${post.number}`}>Click e leia mais...</Link>
+                <Link
+                  className={styles.postCardLink}
+                  to={`/post/${post.number}`}
+                >
+                  Click e leia mais...
+                </Link>
               </footer>
-              
             </div>
           );
         })}
       </section>
-    </main>
+    </section>
   );
 }

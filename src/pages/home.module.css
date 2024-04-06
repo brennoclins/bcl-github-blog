@@ -1,7 +1,8 @@
 .home {
   @apply
-  overflow-hidden
-  bg-[#112131]
+  w-full
+  /* overflow-hidden */
+  bg-base-background
   rounded-lg
 
   flex

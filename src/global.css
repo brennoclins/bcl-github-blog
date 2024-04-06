@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+* {
   @apply
-  bg-[#071422]
+  p-0
+  m-0
+  box-border
+  antialiased
+}
+
+input, textarea, body {
+  @apply
+  font-nunito
+  bg-base-background
 }

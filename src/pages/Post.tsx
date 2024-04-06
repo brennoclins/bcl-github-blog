@@ -82,7 +82,7 @@ export function Post() {
       </section>
 
       <section className={styles.postContent}>
-        <Markdown>{post.body}</Markdown>
+        <Markdown className={styles.postBody}>{post.body}</Markdown>
       </section>
     </main>
   );
